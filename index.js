@@ -50,6 +50,7 @@ const main = async () => {
 
             // Post lyrics
             await twitterClient.post('statuses/update', {status: msg});
+            console.log('Tweeted successfully');
             break;
         }
         catch(error) {
