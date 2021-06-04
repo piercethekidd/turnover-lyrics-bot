@@ -1,0 +1,17 @@
+{
+  "name": "turnover-bot-lyrics",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "discography": "^1.0.1",
+    "get-artist-discography": "0.0.4",
+    "lyrics-parse": "^1.1.1",
+    "twitter": "^1.7.1"
+  }
+}
