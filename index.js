@@ -37,7 +37,7 @@ const main = async () => {
             const maxLine = lyricsArr.length;
             let index = parseInt(Math.random()*maxLine);
             index = (index+4 > maxLine)? maxLine-4:index;
-            const msg = lyricsArr.slice(index, index+4).join('\n')
+            const msg = lyricsArr.slice(index, index+4).join('\n').replace(/&#8217;/g, '\'');
             console.log(msg);
 
             // initialize Twitter API
