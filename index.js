@@ -6,25 +6,46 @@ const { MusicBrainz }   = require('discography');
 
 require('dotenv').config();
 
+const shuffleArray = (array) => {
+   for (var i = array.length - 1; i > 0; i--) { 
+    
+       // Generate random number 
+       var j = Math.floor(Math.random() * (i + 1));
+                    
+       var temp = array[i];
+       array[i] = array[j];
+       array[j] = temp;
+   }
+        
+   return array;
+}
+
 const main = async () => {
     
     // initialize MusicBrainz API and album IDs
     const client = new MusicBrainz();
-    const albumIDs = [
+    
+    const day = new Date().getDate();
+    let albumIDs = [
+        'd8c8ebb3-f7a7-4ef2-9440-fffa9fad72cd', // Self-titled
         'a072280a-897f-4eb7-9131-09adf446d5b6', // Magnolia
         '9d03ba97-d11c-4c60-92aa-432bb5d30701', // Peripheral Vision
         'f659b650-8577-466f-bb60-74e9610256de', // Good Nature
         '480175ce-0e3c-43cd-9c86-541722fd5b4c', // Altogether
-        'd8c8ebb3-f7a7-4ef2-9440-fffa9fad72cd', // Self-titled
-        'e89c8067-0cb2-4eff-b82b-ab3c22905344', // Blue Dream
     ];
+    
+    // If date is visible by 3, add Blue Dream to rotation (this is added to avoid spamming of blue dream lyrics)
+    if (day % 3 === 0) albumIDs.push('e89c8067-0cb2-4eff-b82b-ab3c22905344'); // Blue Dream
+
+    // shuffle album IDs twice
+    albumIDs = shuffleArray(shuffleArray(albumIDs));
     
     while(true) {
         try {
             // randomize turnover album and get tracks
             const album = albumIDs[parseInt(Math.random()*albumIDs.length)];
             let tracks = await client.getTracksByReleaseGroup(album);
-            tracks = tracks.map(track=>track=track.title);
+            tracks = shuffleArray(shuffleArray(tracks.map(track=>track=track.title)));
 
             // randomize song from chosen album and get lyrics
             const title = tracks[parseInt(Math.random()*tracks.length)];
