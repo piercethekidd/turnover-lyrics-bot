@@ -1,6 +1,6 @@
 {
   "name": "turnover-bot-lyrics",
-  "version": "1.0.0",
+  "version": "1.2.0",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -9,6 +9,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "coverarturl": "^1.0.6",
     "discography": "^1.0.1",
     "get-artist-discography": "0.0.4",
     "lyrics-parse": "^1.1.1",
