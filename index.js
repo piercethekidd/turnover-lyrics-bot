@@ -52,6 +52,7 @@ const main = async () => {
 
             // randomize song from chosen album and get lyrics
             const title = tracks[parseInt(Math.random()*tracks.length)];
+            if (title === 'Time') continue;
             const author = "Turnover";
             const lyrics = await lyricsParse(title, author); 
 
